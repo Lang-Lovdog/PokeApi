@@ -13,7 +13,11 @@ let pokemonBuscado = []
 document.addEventListener('DOMContentLoaded', () => {
   fetchPokemones()
 })
-
+const buscaPorNombre = () =>{
+  const busca=document.getElementById('buscaNombre').value
+  console.log('data',busca)
+  
+}
 btnFiltro.addEventListener('click', () => {
   if(input.value > 0 && input.value){
     const limite = input.value
@@ -40,7 +44,7 @@ const fetchPokemonBuscado = id => {
       pokemonBuscado = await res.json()
       const pokemon = {
         nombre: pokemonBuscado.name,
-        experiencia: pokemonBuscado.name,
+        experiencia: pokemonBuscado.base_experience,
         hp: pokemonBuscado.stats[0].base_stat,
         ataque: pokemonBuscado.stats[1].base_stat,
         defensa: pokemonBuscado.stats[2].base_stat,
@@ -61,8 +65,14 @@ const pintarPokemon = pokemon => {
   const template = document.getElementById('card').content
   clone = template.cloneNode(true)
   const fragment = document.createDocumentFragment()
-  template.innerHTML=''
+  pokemonBuscado.innerHTML = ''
   clone.querySelector('.card-body-img').setAttribute('src',pokemon.img)
+  clone.querySelector('.card-body-title').innerHTML=`${pokemon.nombre} <span>${pokemon.hp} HP</span>`
+  clone.querySelector('.card-body-text').textContent=pokemon.experiencia + " EXP"
+  clone.querySelectorAll('.card-footer-social h3')[0].textContent=pokemon.ataque + "K"
+  clone.querySelectorAll('.card-footer-social h3')[1].textContent=pokemon.defensa + "K"
+  clone.querySelectorAll('.card-footer-social h3')[2].textContent=pokemon.especial + "K"
+  
   fragment.appendChild(clone)
   pokemonBuscado.appendChild(fragment)
 }
@@ -90,7 +100,6 @@ const pintarPokemones = () => {
     infoPokemon.querySelectorAll('p')[0].textContent = item.name
     infoPokemon.querySelectorAll('p')[1].textContent = item.url
     infoPokemon.querySelector('button').dataset.id = index + 1
-
 
     const clone =  infoPokemon.cloneNode(true)
     fragment.appendChild(clone)

@@ -1,11 +1,92 @@
+body{
+  background-image: url("../images/PokeBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: fill;
+  background-position: center;
+  background-attachment: fixed;
+}
 .filtro {
   text-align: center;
   margin: 10px;
   border: 1px solid darkblue;
   padding: 10px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: #ecdfdf;
 }
 .flex {
   display: flex;
   flex-direction: row;
+}
+
+.card {
+  background-color: #c4b3a4;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 320px;
+  box-shadow: 0px 1px 10px rgba(85,57,72,15);
+  position: fixed;
+}
+.card-header {
+  width: 100%;
+  display: block;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid maroon;
+}
+.card-body-img{
+  border-radius: 35%;
+  border: 5px inset rgb(218, 172, 103);
+  background-color: #555555;
+  width: 200px;
+  height: 200px;
+}
+.card-body-title {
+  margin: 0;
+  margin-top:2rem;
+  color: black;
+  font-size: 1.8rem;
+}
+.card-body-title span {
+  color: #2c1b08;
+  font-weight: 400;
+  font-style: bold;
+  margin-bottom: 2rem;
+}
+.card-body-text{
+  font-size:1.7rem;
+  color: #783340;
+  margin-bottom: 2rem;
+}
+.card-footer {
+  display: flex;
+  justify-content: space-evenly;
+}
+.card-footer-social{
+  text-align: center;
+}
+.card-footer-social h3{
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  color: black;
+}
+.card-footer-social p{
+  margin-top:0;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  color: rgb(73, 58, 7);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+#pokemonBuscado{
+  display: flex;
+  align-self: flex-start;
+  flex-direction: row;
+  justify-content:center;
 }
