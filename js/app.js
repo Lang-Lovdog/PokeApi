@@ -16,7 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
 const buscaPorNombre = () =>{
   const busca=document.getElementById('buscaNombre').value
   console.log('data',busca)
-  
+  const resultado = pokemones.find(obj =>{
+    if(obj.name === busca)
+      return obj
+    else
+      return false
+  })
+  if(resultado){
+    let aEscenario = [];
+    aEscenario.push(resultado)
+    pintarPokemones(aEscenario)
+  }else{
+    pintarPokemones();
+  }
+  console.log(resultado)
 }
 btnFiltro.addEventListener('click', () => {
   if(input.value > 0 && input.value){
@@ -93,13 +106,20 @@ const fetchPokemones = (total) => {
     })
 }
 
-const pintarPokemones = () => {
+const pintarPokemones = (losPokemones) => {
+  console.log(losPokemones)
+  const aEscenario = losPokemones || pokemones
+  let i=-1;
+  if(losPokemones){
+    i=pokemones.findIndex(x => x.name === losPokemones[0].name)
+    ++i
+  }
   lista.innerHTML = ''
-  pokemones.forEach( (item, index) => {
+  aEscenario.forEach( (item, index) => {
     //console.log(item)
     infoPokemon.querySelectorAll('p')[0].textContent = item.name
     infoPokemon.querySelectorAll('p')[1].textContent = item.url
-    infoPokemon.querySelector('button').dataset.id = index + 1
+    infoPokemon.querySelector('button').dataset.id = i<0? index+1:i
 
     const clone =  infoPokemon.cloneNode(true)
     fragment.appendChild(clone)

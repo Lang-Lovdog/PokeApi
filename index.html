@@ -17,12 +17,16 @@
       box-shadow: rgba(59,55,20,.9);
     ">Pokedex</h1>
     <div class="filtro">
-      <p>Se selecciona el Total de Pokemones</p>
-      <input type="number"  id="filtroPokemones">
-      <button id="btnFiltrar" class="btn btn-primary">Filtrar</button>
-      <button id="btnTodo" class="btn btn-warning">Mostrar todo</button>
-      <p>Búsqueda por nombre</p>
-      <input type="text" oninput="buscaPorNombre()" id="buscaNombre">
+      <div class="numero">
+        <p>Se selecciona el Total de Pokemones</p>
+        <input type="number"  id="filtroPokemones">
+        <button id="btnFiltrar" class="btn btn-primary">Filtrar</button>
+        <button id="btnTodo" class="btn btn-warning">Mostrar todo</button>
+      </div>
+      <div class="nombre">
+        <p>Búsqueda por nombre</p>
+        <input type="text" oninput="buscaPorNombre()" id="buscaNombre">
+      </div>
     </div>
     <div class="flex">
       <div id="lista" class="col-7"></div>
