@@ -15,8 +15,28 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 const buscaPorNombre = () =>{
   const busca=document.getElementById('buscaNombre').value
-  console.log('data',busca)
-  
+  console.log('busqueda: ',busca)
+  fetch(`https://pokeapi.co/api/v2/pokemon?limit=2000`)
+    .then( async(res) => {
+      //console.log('res', await res.json())
+      let data = await res.json()
+      //console.log('pokemon: ', data.results)
+      if(busca===""){
+        fetchPokemones()
+      }else{
+        pokemones = []
+        data.results.forEach(pokemonEncontrado => {
+          //const comparador= new RegExp('[A-Za-z]*${busca}[A-Za-z]*');
+          console.log('pokemonEval: ', pokemonEncontrado.name)
+          //if(pokemonEncontrado.name === comparador){
+          if(pokemonEncontrado.name.search(busca) !== -1){
+            console.log('pokemonFoun: ', pokemonEncontrado)
+            pokemones.push(pokemonEncontrado)
+         }
+        })
+        pintarPokemones()
+      }
+    })
 }
 btnFiltro.addEventListener('click', () => {
   if(input.value > 0 && input.value){
